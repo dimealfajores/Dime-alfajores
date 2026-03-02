@@ -1,0 +1,615 @@
+*{
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+/*Cambio de fuente de todo el cuerpo de la pagina web*/
+body{
+   font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding-top: 150px;
+    text-align: center;
+    background: #fff;
+    color: #333;
+}
+p{
+  font-size: 15px;
+  color: #000;
+}
+/*header
+inicio del header donde se ubica el inicio de la pagina web (encabezado)*/
+header{
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    position: fixed;
+    width: 100%;
+    height: 150px;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    
+}
+header .imagen-logo{
+    background-image: url(logo-dime2.png);
+    width: 250px;
+    height: 150px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    margin: 6px;
+    padding: 0;
+    color: #51d7c9;
+}
+header .contenedor-inicio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contenedor-inicio{
+    max-width: 1400px;
+    margin: 10px;
+}
+header nav{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-bottom: 25px;
+    font-size: 1.2em;
+    gap: 15px;
+}
+header a{
+    padding: 8px 16px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #51d7c9;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+header a i {
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+}
+header a:hover{
+    color: #ff8c75;
+    transform: scale(1.1);
+}
+header a:hover i{
+    transform: rotate(-15deg);
+}
+
+@media(min-width: 720px){
+    header{
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+    header .imagen-logo{
+        padding: 0px;
+        margin: 0px;
+    }
+    header .contenedor-inicio{
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 40 px;
+    }
+    header nav{
+        flex-direction: row;
+        gap: 30px;
+    }
+    
+}
+/* --- MENÚ RESPONSIVE (FORZAR ANCHO COMPLETO + Alineación a la izquierda) --- */
+.menu-toggle {
+  display: none;
+  position: relative;
+  background: white;
+  border: none;
+  font-size: 1.8rem;
+  color: #ff8c75;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 8px 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+/* En móvil colocamos el botón en la esquina derecha del header */
+@media (max-width: 720px) {
+  /* hacer que el header sea contenedor posicionado para referencias */
+  header { position: fixed; top: 0; left: 0; right: 0; }
+
+  /* botón en esquina superior derecha (por encima del contenido) */
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    z-index: 1100;
+  }
+
+  /* nav absoluto relativo al header (ancho total) */
+  header nav.menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 150px;    /* deja espacio para el header fijo */
+    left: 0;       /* asegurar alineación al borde izquierdo de la ventana */
+    right: 0;      /* asegurar alineación al borde derecho */
+    width: auto;   /* usar left+right en lugar de width:100% por seguridad */
+    margin: 0;
+    background: #ffffff;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    border-radius: 0 0 10px 10px;
+    z-index: 1090;
+    padding: 6px 0;
+    animation: slideDown 0.25s ease forwards;
+  }
+
+  /* estado abierto */
+  header nav.menu.active {
+    display: flex;
+  }
+
+  /* enlaces: ocupar ancho con padding lateral, alineados a la izquierda */
+  header nav.menu a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* alineado a la izquierda */
+    gap: 12px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #51d7c9;
+    padding: 14px 20px; /* espacio lateral para que no se pegue al borde */
+    border-bottom: 1px solid #eee;
+    text-decoration: none;
+    background: transparent;
+  }
+
+  /* quitar el borde del último */
+  header nav.menu a:last-child {
+    border-bottom: none;
+  }
+
+  /* hover */
+  header nav.menu a:hover {
+    background: #fafafa;
+    color: #ff8c75;
+  }
+}
+.contenedor-2{
+    margin: 0;
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+.contenedor-2 p {
+    margin: 5px;
+    line-height: 2;
+    font-size: 1rem;
+    text-align: center;
+}
+/* iconos de presentación de redes sociales*/
+.iconos-redes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.iconos-redes i {
+  font-size: 2.3rem;      /* tamaño de los iconos */
+  color: #00bfa6;         /* turquesa a juego con el logo */
+  transition: transform 0.2s ease, color 0.2s ease;
+  cursor: default;        /* quita la manito de enlace */
+}
+
+.iconos-redes i:hover {
+  transform: scale(1.2);
+  color: #ff8c75;         /* salmón clarito al pasar el mouse */
+}
+/*sección 2: botones
+se dara la ubicación y forma de los botones que llevaran a las diferentes redes.*/
+.contenedor-3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 30px 0;
+}
+/* Sección de estilo de botones*/
+.btn {
+    display:  flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 700px;
+    height: 75px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 60px;
+    text-decoration: none;
+    transition: transform 0.2s, opacity 0.2s;
+    background-color: #C97F7F;
+}
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255,255,255,0.6);
+}
+.btn img {
+  position: absolute;
+  left: 20px;
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  background-color: white; /* opcional para mejor visibilidad */
+  border-radius: 50%;
+  padding: 1px;
+  filter: grayscale(100%);
+}
+
+/* Ajustes para SVGs que reemplazan a las <img> */
+.btn svg {
+  background-color: red;
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  left: 20px;
+  background: white;
+  border-radius: 50%;
+  padding: 4px;
+  box-sizing: content-box;
+}
+.catalogo {
+    background-color: #E53935;
+  }
+
+  .nieve-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.nieve-btn::before,
+.nieve-btn::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  pointer-events: none;
+  background-repeat: repeat;
+  background-size: contain;
+  animation: nevar 5s linear infinite;
+  opacity: 0.8;
+}
+
+
+/* Copos capa 2 */
+.nieve-btn::after {
+  background-image: url("imagens.webp");
+  animation-duration: 10s;
+}
+
+@keyframes nevar {
+  from { transform: translateY(-10%); }
+  to   { transform: translateY(100%); }
+}
+
+.servicio-btn svg path,
+.servicio-btn svg circle {
+  transition: 0.2s;
+}
+
+.servicio-btn:hover svg path,
+.servicio-btn:hover svg circle {
+  fill: #b71c1c;
+}
+
+
+/*Final de ultima sección*/
+/*ultima parte footer, pie o final de pagina*/
+
+/*ultima parte footer, pie o final de pagina*/
+footer{
+    background-color: #51d7c9;
+    padding: 40px 20px;
+    border-top: 1px solid #ddd;
+    color: #333;  
+}
+.footer-mini {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #51d7c9;
+  color: #000;
+  padding: 12px 60px;
+  flex-wrap: nowrap; /* evita que se rompan en varias líneas */
+  gap: 20px;
+  line-height: 1.4;
+  font-size: 15px;
+}
+
+/* contenedores hijos */
+.footer-mini .contenedor-1 {
+  text-align: left;
+  white-space: nowrap; /* evita salto de línea en © */
+}
+
+.footer-mini .contenedor-2 {
+  text-align: right;
+  white-space: nowrap; /* evita que la dirección se parta */
+}
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+  align-items: start; /* asegura alineación superior uniforme */
+  text-align: left;
+}
+
+/* todas las columnas del footer */
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+/* títulos */
+.footer-col h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* lista de links */
+.footer-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #000;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.footer-col ul li a:hover {
+  color: #ffffff;
+  transform: translateX(5px);
+}
+
+.footer-col i {
+  color: #009688;
+  font-size: 1.1rem;
+}
+
+/* formulario Newsletter */
+.Newsletter {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Newsletter input {
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+}
+
+.Newsletter button {
+  background-color: #009688;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Newsletter button:hover {
+  background-color: #007a6e;
+}
+
+/* footer-mini al final */
+.footer-mini {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+  padding-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  color: #000;
+  font-size: 15px;
+}
+
+
+/*Favicon*/
+.footer-logo {
+    width: 250px;
+    height: auto;
+    display: block;
+    margin-bottom: 15px;
+}
+/* arreglo para pantallas pequeñas*/
+@media (max-width: 720px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* 🌸 Ajustes para pantallas pequeñas */
+@media (max-width: 720px) {
+    .footer-container {
+    grid-template-columns: 1fr; /* una sola columna */
+    text-align: center; /* centrado total */
+    gap: 30px;
+  }
+
+  .footer-col {
+    align-items: center;
+  }
+
+  .footer-col h2 {
+    text-align: center;
+  }
+
+  .footer-col ul li a {
+    justify-content: center;
+  }
+
+  .Newsletter {
+    align-items: center;
+  }
+
+  .footer-mini {
+    flex-direction: column;
+    text-align: center;
+    gap: 5px;
+    padding: 15px;
+  }
+
+  .footer-mini .contenedor-1,
+  .footer-mini .contenedor-2 {
+    text-align: center;
+  }
+  .footer-logo {
+    display: block;
+    margin: 0 auto 20px auto;
+  }
+}/* 🌸 Ajustes para pantallas pequeñas */
+@media (max-width: 720px) {
+    .footer-container {
+    grid-template-columns: 1fr; /* una sola columna */
+    text-align: center; /* centrado total */
+    gap: 30px;
+  }
+
+  .footer-col {
+    align-items: center;
+  }
+
+  .footer-col h2 {
+    text-align: center;
+  }
+
+  .footer-col ul li a {
+    justify-content: center;
+  }
+
+  .Newsletter {
+    align-items: center;
+  }
+
+  .footer-mini {
+    flex-direction: column;
+    text-align: center;
+    gap: 5px;
+    padding: 15px;
+  }
+
+  .footer-mini .contenedor-1,
+  .footer-mini .contenedor-2 {
+    text-align: center;
+  }
+  .footer-logo {
+    display: block;
+    margin: 0 auto 20px auto;
+  }
+}
+
+/* ------------------------------------------
+   RESPONSIVE GENERAL SIN ALTERAR DISEÑO DESKTOP
+-------------------------------------------*/
+@media (max-width: 720px) {
+
+  /* Ajustar el contenedor principal */
+  .contenedor-2 {
+    padding: 10px;
+  }
+
+  .contenedor-2 p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* Íconos redes sociales */
+  .iconos-redes {
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .iconos-redes i {
+    font-size: 1.8rem;
+  }
+
+  /* Ajustar botones */
+  .btn {
+    width: 90%;       /* Antes 700px */
+    height: 65px;
+    font-size: 1.2rem;
+  }
+
+  .btn img,
+  .btn svg {
+    width: 38px;
+    height: 38px;
+    left: 15px;
+  }
+
+  /* Ajuste para SVG dentro de botones */
+  .btn svg {
+    padding: 3px;
+  }
+
+  /* Alinear contenedor de botones */
+  .contenedor-3 {
+    padding: 0 15px;
+    width: 100%;
+  }
+
+  /* Fix de doble .contenedor-3 anidado */
+  .contenedor-3 > .contenedor-3 {
+    width: 100%;
+  }
+
+  /* Footer ya optimizado, solo asegurar que no desborde */
+  footer {
+    padding: 25px 15px;
+  }
+}
+@media (max-width: 720px) {
+  .servicio-btn {
+      margin-bottom: 60px;
+  }
+}
